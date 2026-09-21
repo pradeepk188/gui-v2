@@ -497,6 +497,7 @@ set (VictronVenusOS_QML_MODULE_SOURCES
     pages/settings/debug/PageSettingsDemo.qml
     pages/settings/debug/PageSystemData.qml
     pages/settings/devicelist/DeviceListPage.qml
+    pages/settings/devicelist/OutEquipAcSettingsColumn.qml
     pages/settings/devicelist/PageAcCharger.qml
     pages/settings/devicelist/PageDigitalInput.qml
     pages/settings/devicelist/PageGenset.qml

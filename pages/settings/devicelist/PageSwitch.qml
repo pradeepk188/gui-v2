@@ -102,11 +102,22 @@ DevicePage {
 			}
 		}
 
+		OutEquipAcSettingsColumn {
+			id: outEquipAcColumn
+
+			serviceUid: root.serviceUid
+		}
+
 		SettingsColumn {
 			width: parent.width
 
 			Repeater {
-				model: root.switchableOutputModel.count === 1 ? root.switchableOutputModel : null
+				// The AC's power toggle is already shown directly in
+				// OutEquipAcSettingsColumn above; skip the generic
+				// single-output sub-page entry for this device so it isn't
+				// shown twice.
+				model: (!outEquipAcColumn.visible && root.switchableOutputModel.count === 1)
+						? root.switchableOutputModel : null
 				delegate: SwitchableOutputListDelegate {}
 			}
 

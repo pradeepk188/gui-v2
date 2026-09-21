@@ -1,0 +1,36 @@
+{
+    "com.victronenergy.switch.outequipac_100": {
+        "/Connected": 1,
+        "/CustomName": "OutEquip AC",
+        "/DeviceInstance": 100,
+        "/FirmwareVersion": null,
+        "/HardwareVersion": null,
+        "/Mgmt/Connection": "BLE E6:87:25:EC:B3:84",
+        "/Mgmt/ProcessName": "outequipac.py",
+        "/Mgmt/ProcessVersion": "0.1.0",
+        "/ProductId": 65535,
+        "/ProductName": "OutEquipPro AC (BLE)",
+        "/State": 256,
+
+        "/SwitchableOutput/output_1/Name": "AC Power",
+        "/SwitchableOutput/output_1/Settings/CustomName": "",
+        "/SwitchableOutput/output_1/Settings/Function": 2,
+        "/SwitchableOutput/output_1/Settings/Group": "",
+        "/SwitchableOutput/output_1/Settings/ShowUIControl": 1,
+        "/SwitchableOutput/output_1/Settings/Type": 1,
+        "/SwitchableOutput/output_1/Settings/ValidFunctions": 2,
+        "/SwitchableOutput/output_1/Settings/ValidTypes": 16383,
+        "/SwitchableOutput/output_1/State": 1,
+        "/SwitchableOutput/output_1/Status": 9,
+
+        "/Ac/Mode": 1,
+        "/Ac/ModeName": "Cool",
+        "/Ac/FanSpeed": 2,
+        "/Ac/SetpointTemperature": 74,
+        "/Ac/Swing": 0,
+        "/Ac/IntakeTemperature": 22,
+        "/Ac/OutletTemperature": 19,
+        "/Ac/SupplyVoltage": 26.6,
+        "/Ac/LastUpdate": 1758312000
+    }
+}

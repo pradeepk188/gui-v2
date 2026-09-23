@@ -48,4 +48,56 @@ Item {
 			}
 		}
 	}
+
+	// Simulate the OutEquip AC driver's on-demand BLE connection: a nonzero
+	// /Ac/ConnectRequest connects after a short delay and holds a 60s lease
+	// that each refresh renews; 0 disconnects immediately.
+	Instantiator {
+		model: FilteredServiceModel { serviceTypes: ["switch"] }
+		delegate: Item {
+			id: acSwitch
+
+			required property string uid
+
+			VeQuickItem {
+				id: connectionState
+				uid: acSwitch.uid + "/Ac/ConnectionState"
+			}
+
+			VeQuickItem {
+				uid: acSwitch.uid + "/Ac/ConnectRequest"
+				onValueChanged: {
+					if (!connectionState.valid) {
+						return
+					}
+					if (value) {
+						leaseTimer.restart()
+						if (connectionState.value !== 2) {
+							connectionState.setValue(1)
+							connectTimer.restart()
+						}
+					} else {
+						connectTimer.stop()
+						leaseTimer.stop()
+						connectionState.setValue(0)
+					}
+				}
+			}
+
+			Timer {
+				id: connectTimer
+				interval: 1500
+				onTriggered: connectionState.setValue(2)
+			}
+
+			Timer {
+				id: leaseTimer
+				interval: 60000
+				onTriggered: {
+					connectTimer.stop()
+					connectionState.setValue(0)
+				}
+			}
+		}
+	}
 }

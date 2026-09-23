@@ -31,6 +31,8 @@
         "/Ac/IntakeTemperature": 22,
         "/Ac/OutletTemperature": 19,
         "/Ac/SupplyVoltage": 26.6,
-        "/Ac/LastUpdate": 1758312000
+        "/Ac/LastUpdate": 1758312000,
+        "/Ac/ConnectRequest": 0,
+        "/Ac/ConnectionState": 0
     }
 }

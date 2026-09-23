@@ -106,6 +106,7 @@ DevicePage {
 			id: outEquipAcColumn
 
 			serviceUid: root.serviceUid
+			pageActive: root.isCurrentPage
 		}
 
 		SettingsColumn {

@@ -12,7 +12,7 @@ import Victron.VenusOS
 
 	Power on/off is the device's regular SwitchableOutput, shown here as a
 	direct toggle rather than the generic single-output sub-page PageSwitch.qml
-	would otherwise link to (unnecessary ceremony for a plain on/off relay --
+	would otherwise     link to (unnecessary ceremony for a plain on/off relay --
 	see the toggle below). The driver additionally publishes mode/fan speed/
 	setpoint/swing/temperature/voltage under a non-standard /Ac/* namespace,
 	which the stock switch page has no concept of -- this column adds native
@@ -76,18 +76,15 @@ SettingsColumn {
 	}
 
 	ListSpinBox {
-		// The setpoint register carries a plain integer with no confirmed
-		// unit (see VeOutEquipAC/NOTES.md) -- observed real setpoints
-		// (67-74) strongly suggest Fahrenheit degrees, but it's left
-		// unlabeled/unconverted until that's confirmed against real
-		// hardware, same reasoning the driver's own notes already settled on
-		// for these registers.
+		// The setpoint register carries a plain integer in whole Fahrenheit
+		// degrees, so the 63-86 range below is in °F (~17-30 °C).
 		text: "Setpoint"
 		dataItem.uid: root._acPrefix + "SetpointTemperature"
-		from: 60
-		to: 90
+		from: 63
+		to: 86
 		stepSize: 1
 		decimals: 0
+		suffix: Units.defaultUnitString(VenusOS.Units_Temperature_Fahrenheit)
 	}
 
 	ListSwitch {
@@ -95,16 +92,18 @@ SettingsColumn {
 		dataItem.uid: root._acPrefix + "Swing"
 	}
 
-	ListQuantity {
+	ListTemperature {
 		text: "Intake temperature"
 		dataItem.uid: root._acPrefix + "IntakeTemperature"
+		dataItem.sourceUnit: Units.unitToVeUnit(VenusOS.Units_Temperature_Fahrenheit)
 		preferredVisible: dataItem.valid
 		decimals: 0
 	}
 
-	ListQuantity {
+	ListTemperature {
 		text: "Outlet temperature"
 		dataItem.uid: root._acPrefix + "OutletTemperature"
+		dataItem.sourceUnit: Units.unitToVeUnit(VenusOS.Units_Temperature_Fahrenheit)
 		preferredVisible: dataItem.valid
 		decimals: 0
 	}
